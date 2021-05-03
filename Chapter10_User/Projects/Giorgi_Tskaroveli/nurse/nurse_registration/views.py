@@ -1,6 +1,7 @@
+from flask_user import login_required
 from nurse import db, NursesModel
 from flask import render_template, redirect, url_for, session, Blueprint
-from Chapter10_User.projects.Giorgi_Tskaroveli.nurse.nurse_registration.forms import registration_form, registration_form2, final_save_to_db
+from nurse.nurse_registration.forms import registration_form, registration_form2, final_save_to_db
 
 
 nurse_blueprint = Blueprint('nurse_registration',
@@ -9,6 +10,7 @@ nurse_blueprint = Blueprint('nurse_registration',
 
 
 @nurse_blueprint.route('/step1', methods=['GET', 'POST'])
+@login_required
 def step1():
     email = None
     first_name = None
@@ -26,6 +28,7 @@ def step1():
 
 
 @nurse_blueprint.route('/step2', methods=['GET', 'POST'])
+@login_required
 def step2():
     address = None
     department = None
@@ -44,6 +47,7 @@ def step2():
 
 
 @nurse_blueprint.route('/validation', methods=['GET', 'POST'])
+@login_required
 def validation():
     form = final_save_to_db()
 

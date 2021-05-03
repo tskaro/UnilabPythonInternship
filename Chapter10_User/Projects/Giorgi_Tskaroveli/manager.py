@@ -1,4 +1,5 @@
-from Chapter10_User.projects.Giorgi_Tskaroveli.nurse import app
+from nurse import create_app
 
 if __name__ == '__main__':
-    app.run(debug=True, port="4000")
+    app = create_app()
+    app.run(debug=True)
