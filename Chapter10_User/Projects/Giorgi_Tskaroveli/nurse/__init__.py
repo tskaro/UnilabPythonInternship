@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, request
+from flask import Flask, redirect, url_for, flash
 from flask_login import LoginManager, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -29,15 +29,11 @@ def create_app():
     from nurse.user.views import user_blueprint
     app.register_blueprint(user_blueprint)
 
-    # @app.route('/', methods=['GET'])
-    # def homepage():
-    #     return render_template('home.html')
-
     @app.route('/logout', methods=['GET', 'POST'])
     def logout():
         logout_user()
         flash("მომხმარებელი გამოვიდა სისტემიდან")
-        return redirect(url_for('homepage'))
+        return redirect(url_for('homepage.representation'))
 
     return app
 
